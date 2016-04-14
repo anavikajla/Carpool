@@ -6,7 +6,7 @@ public class test{
 
 public static void main(String args[])throws Exception
 {
-	MongoClient mongoClient = new MongoClient();
+	
 	System.out.println("Login or Signup?");
 	InputStreamReader read_initial = new InputStreamReader(System.in);
 	BufferedReader inp = new BufferedReader(read_initial);
@@ -72,4 +72,21 @@ public static void main(String args[])throws Exception
 		System.out.println(pw);
 		System.out.println(pwc);
 	}
+	
+	public static void OfferRide()
+	{
+		String time,date,destination,numberOfRiders,charge;
+		
+	}
+	
+	public static void RequestRide(String fname)
+	{
+		String date,location;
+	}
+	
+	public static void Search()
+	{
+		
+	}
+	
 }
