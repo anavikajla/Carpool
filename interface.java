@@ -1,37 +1,107 @@
-/* This object will allow one to offer a ride and request for offered ride if any.*/
+/** High Level Design
+Ashoka Carpool Program
+Anavi Kajla & Manisha Sah
+CS205
+ b)Interface
+ */
+import java.util.*;
+import java.lang.*;
 
-public class Carpool {
+/** This interface will allow the user to offer a ride and request for offered ride if there are any 
 
-  public static void main (Strings Args[])
-  {
-  //ask for input from user, either to login or sign-up.
-  }
-/* Login method check access to the app and directs to user's page.*/
-  public static void login()
-  {
-    user (x); //calls user method
-  }
+available as per the specified date and destination.*/
 
-/* Sign_up method allows user to access the app and on completion directs to their page.*/
-  public static void sign_up()
-  {
-    user (x); //calls user method
-  }
-
-/*User method will present different function of the app and direct to different service as per their choices.
-It will take the name of the user from the login or sign_up methods to develop individual user's informations. */
-public static void user(String name)
+public class Carpool
 {
-  Offerer O = new offerer("name"); // if user is offerer, a new object will be created under user's name.
-  Rider r = new rider ("name"); // if user is requesting for a ride, a new object will be created under user's name.
+	
+	public static void main(String args[])
+	{
+	
+	}
+
+	/* The login method checks whether the user has inputted the correct credentials and 		directs to the user's page where the three options to book, offer or cancel a ride will 		be made available.*/
+	
+	public static void login()
+	{
+		/*User u = new User(); 
+		u.user(id); //calls user method */
+	}
+
+	/*  The signUp method allows the user to create an account, grants access to the 
+		program and on completion redirects to the user’s page.*/
+
+	public static void signUp()
+	{
+		/*User u = new User();
+		u.user(id);  //calls user method */
+	}
 }
+
+/** User class will present the different functions(options) offered by the program and direct to them as per the choices of the user.
+It will take the name of the user from the login or signUp methods to develop the individual user’s information.
+*/
+
+class User
+{
+	public static void user(String name) 
+	{ 
+		Rider r = new Rider(); // If the users wants to request a ride 
+	}
 }
-/*Add_ride method will allow the user to add the detail of the ride to be offered and confirm it.*/
-class Offerer(String name){}
 
-/*request_ride method will allow user to access the offered rides and choose among them*/
-class Rider(String name){}
+ /** Offer class will allow the user to add (i.e. offer) a new ride by specifying the details of the 
 
-/*confirm_ride method confirms the ride either offered or requested
-public static void confirm_ride(String name){}*/
+ride and confirming it.*/   
 
+class Offer
+{
+	String offerer, travelDate, destination, deptTime, numOfSeats, charged;
+
+    /** This method will take inputs from the offerer about the ride. */
+	
+	public static void offer(String name)
+	{
+		
+	}
+
+		/** The method will store the inputs from offerer and add on the list of offered 			rides.*/ 
+		
+	public static void confirm ()
+	{
+		
+	} 
+}
+
+/** Rider class will allow the user to access the offered rides and select his preferred one. Only one ride can be selected at once.*/
+
+class Rider
+{
+	String travelDate, destination, deptTime;
+	
+	/** The method rider will take inputs from the rider and give the list of available offered 	rides as per specified dates and destination.*/
+	
+	public static void rider(String name)
+	{
+	
+	}
+
+/** The method confirm will accept the select ride and update the list of offered rides.*/
+
+	public static void confirm ()
+	{
+	
+	}
+}
+
+/** Destination class will take the location. */
+
+class Destination
+{
+	String location; 
+	
+	/** The method confirm will take the destination from the user.*/
+	public void Destination (String destination)
+	{
+		
+	}
+}
