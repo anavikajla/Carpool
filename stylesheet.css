@@ -1,0 +1,32 @@
+#header {
+    /*height: 7em;*/
+    width: 50%;
+    background-color: white;
+    border-radius: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.5em;
+    color: lightseagreen;
+    font-size:5em;
+    text-align: center;
+    font-weight:bolder;
+}
+
+.options{
+    height: 10em;
+    width: 20em;
+    margin-left: 20em;
+    border-color: lightseagreen;
+}
+
+.subhead{
+    font-size:2em;
+    font-family: Arial;
+    padding-top:2em;
+}
+
+.form-group{
+    width:50%;
+    margin:0 auto;
+}
+
