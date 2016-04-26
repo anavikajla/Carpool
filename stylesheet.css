@@ -13,10 +13,11 @@
 }
 
 .options{
-    height: 10em;
-    width: 20em;
-    margin-left: 20em;
+    height: 12em;
+    width: 24em;
+    margin-left: 14.5em;
     border-color: lightseagreen;
+    margin-top: 5em;
 }
 
 .subhead{
@@ -28,5 +29,9 @@
 .form-group{
     width:50%;
     margin:0 auto;
+}
+
+.submit{
+    padding-top: 1em;
 }
 
