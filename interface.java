@@ -12,8 +12,8 @@ available as per the specified date and destination. For now, there are only rid
 public class  Offer
 {
 	/** The method adds the details of a ride to the database.*/
-	public static void submit (String offerer,String phnNumber,String travelDate,String destination,String deptTime,
-                               String numOfSeats,String charged,String description){}
+	public static void submit (String offererName,String offererPhoneNumber,String travelDate,String destination,String deptTime,
+                               String availableNumberOfSeats,String charges,String description){}
    	
 }
 
@@ -29,7 +29,7 @@ public class Rider
 public class RequestedRide
 {
 	/** The constructor stores the details of the requested ride.*/
-	public RequestedRide(String oName, String oPhone, String availrides, String time, String describe, String id, String charge)
+	public RequestedRide(String name, String phoneNum, String availrides, String time, String describe, String id, String charge)
         {}
 
         // Individual Methods return the respective details of the ride.
@@ -48,7 +48,7 @@ public class ConfirmRide
 {
 	/**The method search the details of selected ride, return the present availability of the selected ride and on availability
 	 update the list of offered rides and add the ride to the confirmed ride list.*/	
-    	public static int confirm(String id, String riderName, String riderPhoneNumber, String travelDate,String destination,
+    	public static synchronized int confirm(String id, String riderName, String riderPhoneNumber, String travelDate,String destination,
                                     String numberOfSeatsBooked)
     	{}
     	//Individual methods return the respective details of the ride.
@@ -73,7 +73,7 @@ public class SearchConfirmedRiders
 public class ConfirmedRider 
 {
 	/** The constructor stores the details of the rider and ride.*/
-	 public ConfirmedRider(String name, String phone, String seatsBooked, String time, String date, String charge, String dest)
+	 public ConfirmedRider(String name, String phoneNum, String seatsBooked, String time, String date, String charge, String dest)
     {}
 	// Individual methods retuurn the repsective requested details of the rider and ride.
 	public String getRiderName(){}
