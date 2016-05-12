@@ -8,7 +8,7 @@ CS205
 
 available as per the specified date and destination. For now, there are only rides available from campus.*/
 
-/** The OfferRide class allows user to offer a ride by adding the details of the new ride to the list of offered rides.*/
+/** The Offer class allows user to offer a ride by adding the details of the new ride to the list of offered rides.*/
 public class  Offer
 {
 	/** The method adds the details of a ride to the database.*/
