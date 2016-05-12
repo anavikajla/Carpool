@@ -2,139 +2,85 @@
 Ashoka Carpool Program
 Anavi Kajla & Manisha Sah
 CS205
- b)Interface
- */
-import java.util.*;
-import java.lang.*;
-import com.mongodb.*;
+ 
 
-/** This interface will allow the user to offer a ride and request for offered ride if there are any 
+/** This web-app allows the user to offer a ride and request for offered ride if there are any 
 
-available as per the specified date and destination.*/
+available as per the specified date and destination. For now, there are only rides available from campus.*/
 
-public class Carpool
+/** The OfferRide class allows user to offer a ride by adding the details of the new ride to the list of offered rides.*/
+public class  Offer
 {
-	
-	public static void main(String args[])
-	{
-		User u = new User();
-        	u.user();
-        }
-
+	/** The method adds the details of a ride to the database.*/
+	public static void submit (String offerer,String phnNumber,String travelDate,String destination,String deptTime,
+                               String numOfSeats,String charged,String description){}
+   	
 }
 
-/** User class will present the different functions(options) offered by the program and direct to them as per the choices of the user.
-It will take the name of the user from the login or signUp methods to develop the individual user’s information.
-*/
-
-class User
+/** The Rider class allows the user to view the offered rides.*/
+public class Rider
 {
-	public static void user() 
-	{ 
-		System.out.println("Name?");
-		Scanner inp = new Scanner(System.in);
-	        String name = inp.nextLine();
-	
-	        Offer a = new Offer();
-	        a.offer(name);
-		//Rider r = new Rider(); // If the users wants to request a ride 
-	}
+    /**The method search the ride from the list of offered rides based on the details of the required ride and returns the list of searched rides*/
+    public static List<Ride> searchRides (String travelDate,String destination,String numOfSeatsRequested)
+    {}
 }
 
- /** Offer class will allow the user to add (i.e. offer) a new ride by specifying the details of the 
-
-ride and confirming it.*/   
-
-class Offer
+/** The RequestedRide class give the details of the searched/requested ride. */
+public class RequestedRide
 {
-	static String offerer;
-	static String travelDate;
-	static String destination;
-	static String deptTime;
-	static String numOfSeats;
-	static String charged;	
+	/** The constructor stores the details of the requested ride.*/
+	public RequestedRide(String oName, String oPhone, String availrides, String time, String describe, String id, String charge)
+        {}
 
-    /** This method will take inputs from the offerer about the ride. */
-	
-	public static void offer(String name)
-	{	
-	    System.out.println ("     Hello"+ " "+ name);
-
-            offerer=name;
-
-            System.out.println("Travelling Date (dd/mm/yy)?");
-            Scanner date = new Scanner(System.in);
-            travelDate = date.nextLine();
-
-            System.out.println("Destination?");
-            Scanner dst = new Scanner(System.in);
-            destination = dst.nextLine();
-
-            System.out.println("Departue time (00:00/24 hrs format)?");
-            Scanner time = new Scanner(System.in);
-            deptTime = time.nextLine();
-
-            System.out.println("Maximum no. of Riders?");
-            Scanner seats = new Scanner(System.in);
-            numOfSeats = seats.nextLine();
-
-            System.out.println("Charged (Y/N)?");
-            Scanner chrg= new Scanner(System.in);
-            charged = chrg.nextLine();
-
-            submit();	
-
-	}
-
-	/** The method will store the inputs from offerer and add on the list of offered rides.*/ 
-		
-	public static void submit ()
-	{
-	    MongoClient offer = new MongoClient();
-            DB db = offer.getDB("offer");
-            DBCollection adder = db.getCollection("adder");
-            BasicDBObject info = new BasicDBObject();
-            info.put("Name", offerer);
-            info.put("Travelling Date",travelDate);
-            info.put("Destination", destination);
-            info.put("Departure time", deptTime);
-            info.put("Maximum number of riders", numOfSeats);
-            info.put("Charged", charged);
-
-            adder.insert(info);
-	} 
+        // Individual Methods return the respective details of the ride.
+        public String getOffererName()
+        public String getOffererPhoneNumber()
+        public String getAvailableNumOfRides()
+        public String getDeptTime()
+        public String getDescription()
+        public String getRiderId()
+        public String getCharges()
 }
 
-/** Rider class will allow the user to access the offered rides and select his preferred one. Only one ride can be selected at once.*/
-
-class Rider
+/** The ConfirmedRide class confirms the selected ride, add the ride details to the list of confirmed list
+and give the details of the ride.*/
+public class ConfirmRide
 {
-	String travelDate, destination, deptTime;
-	
-	/** The method rider will take inputs from the rider and give the list of available offered 	rides as per specified dates and destination.*/
-	
-	public static void rider(String name)
-	{
-	
-	}
-
-/** The method confirm will accept the select ride and update the list of offered rides.*/
-
-	public static void submit ()
-	{
-	
-	}
+	/**The method search the details of selected ride, return the present availability of the selected ride and on availability
+	 update the list of offered rides and add the ride to the confirmed ride list.*/	
+    	public static int confirm(String id, String riderName, String riderPhoneNumber, String travelDate,String destination,
+                                    String numberOfSeatsBooked)
+    	{}
+    	//Individual methods return the respective details of the ride.
+    	public static String getOffererName(){}
+    	public static String getOffererPhoneNumber(){}
+    	public static String getDeptTime(){}
+    	public static String getCharges(){}
+    	public static String getDescription(){}
 }
 
-/** Destination class will take the location. */
-
-class Destination
+/** The SearchConfirmedRider class allows the user to view the list of riders on his/her offered ride.*/
+public class SearchConfirmedRiders
 {
-	String location; 
-	
-	/** The method confirm will take the destination from the user.*/
-	public void Destination (String destination)
-	{
-		
-	}
+
+	 /**The method search the ride from the list of confirmed rides based on the details of the offerer
+	 and returns the list of his/her confirmed rider*/
+    	public static List<ConfirmedRider> searchRiders (String offererName,String offererPhoneNumber)
+    {}
+}
+
+/** The ConfirmedRider class give the details of the rider of searched/requested ride. */
+public class ConfirmedRider 
+{
+	/** The constructor stores the details of the rider and ride.*/
+	 public ConfirmedRider(String name, String phone, String seatsBooked, String time, String date, String charge, String dest)
+    {}
+	// Individual methods retuurn the repsective requested details of the rider and ride.
+	public String getRiderName(){}
+	public String getRiderPhoneNumber(){}
+	public String getNumOfSeatsBooked(){}
+	public String getDeptTime(){}
+	public String getCharges(){}
+	public String getTravelDate(){}
+	public String getDestination(){}
 }
