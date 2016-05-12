@@ -1,14 +1,18 @@
 package in.edu.ashoka;
 
 /**
- * Created by anavikajla on 12/05/16.
+ * Created by manisha.sah on 12/05/16.
  */
+
+/** The ConfirmRider class give the details of the rider confirmed to a ride. */
 public class ConfirmedRider {
     String riderName, riderPhoneNumber, numOfSeatsBooked, deptTime,charges,travelDate, destination;
 
-    public ConfirmedRider(String name, String phone, String seatsBooked, String time, String date, String charge, String dest){
+
+    /** The constructor stores the details of the rider and the ride.*/
+    public ConfirmedRider(String name, String phoneNum, String seatsBooked, String time, String date, String charge, String dest){
         riderName = name;
-        riderPhoneNumber = phone;
+        riderPhoneNumber = phoneNum;
         numOfSeatsBooked = seatsBooked;
         deptTime = time;
         charges = charge;
@@ -16,9 +20,10 @@ public class ConfirmedRider {
         destination = dest;
     }
 
+    // Respective Method returns the respective details of the ride on called.
     public String getRiderName(){return riderName;}
     public String getRiderPhoneNumber(){return riderPhoneNumber;}
-    public String getNumOfSeatsBooked(){return numOfSeatsBooked;} //changed
+    public String getNumOfSeatsBooked(){return numOfSeatsBooked;}
     public String getDeptTime(){return deptTime;}
     public String getCharges(){return charges;}
     public String getTravelDate(){return travelDate;}
