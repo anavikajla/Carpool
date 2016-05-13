@@ -7,67 +7,68 @@ import java.lang.*;
  * Created by manisha.sah on 07-05-2016.
  */
 
-public class ConfirmRide{
 
-    static String offerer, offererPhoneNumber, availableNumOfSeats ,deptTime,description, charges;
+/** The ConfirmedBookedRide class confirms the selected ride, add the ride details to the list of confirmed list of rides
+and give the details of the ride.*/
+public class ConfirmBookedRide {
 
-    public static int confirm(String id, String riderName, String riderPhoneNumber, String travelDate,String destination,
-                                    String numberOfSeatsBooked)
+    static String offererName, offererPhoneNumber, availableNumberOfSeats,deptTime,description, charges;
+
+
+    /**The method search the details of selected ride, return the present availability of the selected ride and on availability
+     update the list of offered rides and add the ride to the confirmed ride list. It is accessible to only one user at a time.*/
+    public static synchronized int confirm(String id, String riderName, String riderPhoneNumber, String travelDate,String destination,
+                                            String numberOfSeatsBooked)
     {
-        int count=0;
+        int count=0;            //count to check whether the ride is still available.
 
-        /*String offerer = null;
-        String offererPhoneNumber = null;
-        String availableNumOfSeats = null;
-        String deptTime = null;
-        String description = null;
-        String charges = null;*/
+        MongoClient user = new MongoClient();            //connects to the mongodb server
+        DB db = user.getDB("Carpool");                  //creates/uses a "carpool" database to store the values.
+        DBCollection rides = db.getCollection("rides");          //creates/uses a "rides" collection to store the values.
 
-        MongoClient user = new MongoClient();
-        DB db = user.getDB("Carpool");
-        DBCollection rides = db.getCollection("rides");
+        BasicDBObject searchQuery = new BasicDBObject();    //ceates a new object to perform search.
 
-        BasicDBObject searchQuery = new BasicDBObject();
-        searchQuery.put("_id", new ObjectId(id));
+        //puts detail of the ride (unique id), which is used to perform the search, into the object under specific headings used in the database.
+        searchQuery.put("_id", new ObjectId(id));       
 
-        DBCursor cursor = rides.find(searchQuery);
+        DBCursor cursor = rides.find(searchQuery);          //perform search based on the details in the "searchquery" object. 
         DBObject rideInfo;
 
-
+        //gets information about the searched ride from the collection. It is assured that there is only one object found since a single booking is allowed per request.
         while (cursor.hasNext())
         {
             rideInfo = cursor.next();
-            offerer = rideInfo.get("Name").toString();
+            offererName = rideInfo.get("Name").toString();
             offererPhoneNumber = rideInfo.get("Phone Number").toString();
-            availableNumOfSeats = rideInfo.get("Available Number of Seats").toString();
+            availableNumberOfSeats = rideInfo.get("Available Number of Seats").toString();
             deptTime = rideInfo.get("Departure time").toString();
             description = rideInfo.get("Description").toString();
             charges = rideInfo.get("Charges").toString();
-
         }
 
-        int availableNumOfSeatsInt = Integer.parseInt(availableNumOfSeats);
+        //changes string to integer.
+        int availableNumOfSeatsInt = Integer.parseInt(availableNumberOfSeats);      
         int numberOfSeatsBookedInt = Integer.parseInt(numberOfSeatsBooked);
 
-        if (availableNumOfSeatsInt >= numberOfSeatsBookedInt) //then do the following else return count=0 and print rides not available for requested num of rides.
+        if (availableNumOfSeatsInt >= numberOfSeatsBookedInt) // compares whether the ride is still available on the basis of num of seats requested and available seats.
         {
+            Integer updateSeats = availableNumOfSeatsInt - numberOfSeatsBookedInt;      //changes to object
 
-            Integer updateSeats = availableNumOfSeatsInt - numberOfSeatsBookedInt;
+            BasicDBObject updateQuery = new BasicDBObject();            ////ceates a new object to update on booking.
+            updateQuery.put("$set", new BasicDBObject().append("Available Number of Seats", updateSeats.toString()));     //add detail to be update under the heading.  
 
-            BasicDBObject updateQuery = new BasicDBObject();
-            updateQuery.put("$set", new BasicDBObject().append("Available Number of Seats", updateSeats.toString()));
+            BasicDBObject search = new BasicDBObject();     
+            search.put("_id", new ObjectId(id));        //search for the ride to be updated based on its unique id.
 
-            BasicDBObject search = new BasicDBObject();
-            search.put("_id", new ObjectId(id));
-
-            rides.update(search, updateQuery);
+            rides.update(search, updateQuery);      //updates the detail under the given heading.
             count++;
 
+            DBCollection confirmRides = db.getCollection("ConfirmedRides");     //creates/uses a "ConfirmedRides" collection to store rides on confirmation.
 
-            DBCollection confirmRides = db.getCollection("ConfirmedRides");
 
+            //puts the details under specific headings in the collection.    
             BasicDBObject info = new BasicDBObject();
-            info.put("Offerer Name", offerer);
+            info.put("Offerer Name", offererName);
             info.put("Offerer Phone Number", offererPhoneNumber);
             info.put("Travelling Date",travelDate);
             info.put("Destination", destination.toLowerCase());
@@ -78,18 +79,14 @@ public class ConfirmRide{
             info.put("Rider Name",riderName.toLowerCase());
             info.put("Rider Phone Number",riderPhoneNumber);
 
-            confirmRides.insert(info);
+            confirmRides.insert(info);       //inserts all the details in the collection.
 
-            getOffererName();
-            getOffererPhoneNumber();
-            getDeptTime();
-            getCharges();
-            getDescription();
         }
-        return count;   //if count=1, the requested ride is confirmed. if count=0, requested ride is taken away.
+        return count;   //if count=1, the requested ride is confirmed. if count=0, requested ride has already been taken
     }
 
-    public static String getOffererName(){return offerer;}
+    // Respective Method returns the respective details of the ride on called.
+    public static String getOffererName(){return offererName;}
     public static String getOffererPhoneNumber(){return offererPhoneNumber;}
     public static String getDeptTime(){return deptTime;}
     public static String getCharges(){return charges;}
