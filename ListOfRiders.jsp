@@ -25,7 +25,7 @@ String offererName = request.getParameter("offererName");
 
 String offererPhoneNumber = request.getParameter("phoneNumber");
 
-List<ConfirmedRider>listOfRiders = Rider.searchRiders(offererName,offererPhoneNumber);
+List<ConfirmedRider>listOfRiders = Offer.searchRiders(offererName,offererPhoneNumber);
 %>
 
     <p class="text-center" style="color: darkgray; font-size: 2em">search results for:<%=" " + offererName%></p>
