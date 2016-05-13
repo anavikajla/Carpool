@@ -14,6 +14,12 @@ public class  Offer
 	/** The method adds the details of a ride to the database.*/
 	public static void submit (String offererName,String offererPhoneNumber,String travelDate,String destination,String deptTime,
                                String availableNumberOfSeats,String charges,String description){}
+        
+
+	 /**The method search the ride from the list of confirmed rides based on the details of the offerer
+	 and returns the list of his/her confirmed rider*/
+    	public static List<ConfirmedRider> searchRiders (String offererName,String offererPhoneNumber)
+    {}
    	
 }
 
@@ -44,7 +50,7 @@ public class RequestedRide
 
 /** The ConfirmedRide class confirms the selected ride, add the ride details to the list of confirmed list
 and give the details of the ride.*/
-public class ConfirmRide
+public class ConfirmBookedRide
 {
 	/**The method search the details of selected ride, return the present availability of the selected ride and on availability
 	 update the list of offered rides and add the ride to the confirmed ride list.*/	
@@ -59,15 +65,6 @@ public class ConfirmRide
     	public static String getDescription(){}
 }
 
-/** The SearchConfirmedRider class allows the user to view the list of riders on his/her offered ride.*/
-public class SearchConfirmedRiders
-{
-
-	 /**The method search the ride from the list of confirmed rides based on the details of the offerer
-	 and returns the list of his/her confirmed rider*/
-    	public static List<ConfirmedRider> searchRiders (String offererName,String offererPhoneNumber)
-    {}
-}
 
 /** The ConfirmedRider class give the details of the rider of searched/requested ride. */
 public class ConfirmedRider 
