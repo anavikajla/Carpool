@@ -5,11 +5,16 @@
     border-radius: 0.5em;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 0.5em;
+    /*margin-top: 0.5em;*/
     color: lightseagreen;
-    font-size:5em;
+    font-size:5.5em;
     text-align: center;
     font-weight:bolder;
+}
+
+#header a{
+    text-decoration: none;
+    color: lightseagreen;
 }
 
 .options{
@@ -33,5 +38,30 @@
 
 .submit{
     padding-top: 1em;
+}
+
+#confirm{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    font-family: Arial;
+    font-size:2em;
+    text-align: justify;
+}
+
+.table{
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 2em;
+    table-layout: fixed;
+}
+
+.display{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    font-size:1.5em;
 }
 
